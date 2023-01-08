@@ -1,5 +1,4 @@
 const express = require("express");
-// Cors: permite proteger el servidor de una manera superficial. Discrimina quien puede acceder al restAPI. Usualmente siempre se usa el cors.
 const cors = require("cors");
 
 class Server {
@@ -7,21 +6,25 @@ class Server {
   constructor() {
     // Creo la app como una propiedad
     this.app = express();
-    this.port = process.env.PORT;
+    this.port = process.env.PORT; 
+    this.paths = {};              //Le envio mi APP. 
+    this.server = require('http').createServer(this.app);
+    //Este io es la información de todos mis sockets (Clientes) conectados: //Puedo enviar mensajes a todos mis sockets. 
+    this.io = require('socket.io')(this.server);
 
-    this.paths = {
-    };
 
     // MIDDLEWARES: funciones que añaden más funcionalidades a mi web server. Aqui se llamaran y ejecutaran.
     this.middlewares();
 
     // Disparar las rutas
     this.routes();
+
+    //Sockets config: 
+    this.sockets(); 
   }
 
   //Middleware: Es una función que se ejecuta antes de llamar un controlador o seguir con la ejecucuón de mis peticiones. Funciones que se realizar antes de hacer un llamado.
   middlewares() {
-    // usaremos muchos!
 
     //Forma en que decimos que usamos un middlewares (.use)
 
@@ -32,17 +35,27 @@ class Server {
     this.app.use(express.static("public"));
   }
 
-  // Metodo para manejo/def de rutas
   routes() {
-    // Las rutas que queremos usar de acuerdo al path. Siempre ordenar afabéticamente
     // this.app.use(this.paths.auth, require("../routes/auth.routes"));
   }
 
-  // Hacia donde va a mirar o escuchar el RestServer
+  sockets() {
+
+    this.io.on('connection', (socket) => {
+
+      console.log('someone connected!', socket.id);
+
+      socket.on('disconnect', () => {
+        console.log('Socket (client) disconnect', socket.id);
+      })
+    })
+  }
+
   listen() {
-    this.app.listen(this.port, () => {
+    this.server.listen(this.port, () => {
       console.log("Se ejecuta en: ", this.port);
     });
+    
   }
 }
 

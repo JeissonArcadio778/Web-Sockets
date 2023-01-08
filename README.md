@@ -24,3 +24,12 @@
 # ¿Qué es Socket.io? 
 
 Es un implementación de lo que se conoce como Web Socket. Es muy parecido a Express (Se puede crear también un res/web server). Es como el express de los web sockets.  
+
+# ¿Qué son los eventos por Stockets?
+
+Son todas aquellas interacciones que un socket (cliente), puede hacer. Ejemplo: Ingresar, salir, enviar, recibir...
+
+
+# Mensajes de conexión y desconexión: 
+
+   "Socket.on": Es para estar escuchando algún evento. 
