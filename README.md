@@ -6,7 +6,7 @@
 
  - ¿Qué son los Web Sockets?
 
- Permiten mantener una comunicación ACTIVO ACTIVO entre cliente y servidor. (Se pueden enviar Strings, Bools, Objects...).
+ Permiten mantener una comunicación ACTIVO-ACTIVO entre cliente y servidor. (Se pueden enviar Strings, Bools, Objects...).
 
     - Se envita usar peticiones GET constantemente. Porque ahora estas están activas con el servidor y el servidor activos con estos.
 

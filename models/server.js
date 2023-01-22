@@ -19,7 +19,7 @@ class Server {
     // Disparar las rutas
     this.routes();
 
-    //Sockets config: 
+    // Sockets config: 
     this.sockets(); 
   }
 
@@ -41,12 +41,18 @@ class Server {
 
   sockets() {
 
+    //From Backend
     this.io.on('connection', (socket) => {
 
-      console.log('someone connected!', socket.id);
+      console.log('Socket is connected!', socket.id);
 
       socket.on('disconnect', () => {
-        console.log('Socket (client) disconnect', socket.id);
+        console.log('Socket is disconnect', socket.id);
+      })
+
+      socket.on('send-message', (payload) => {
+        // console.log('Send message from Server');
+        console.log(payload);
       })
     })
   }
