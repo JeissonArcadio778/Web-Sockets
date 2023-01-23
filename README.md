@@ -33,3 +33,20 @@ Son todas aquellas interacciones que un socket (cliente), puede hacer. Ejemplo: 
 # Mensajes de conexión y desconexión: 
 
    "Socket.on": Es para estar escuchando algún evento. 
+
+# Mensajes desde el cliente al servidor. 
+
+   Podemos enviar al servidor mensajes (pauyloads) para ser procesados con algún tipo de información. 
+
+   R/. emit...
+
+# Mensajes desde el servidor al cliente
+
+   Enviar mensajes de alguna nueva actualización/noficación, si alguien grabó algo en alguna DB. Alarmas. 
+
+   Un cliente puede enviarle algo a otro cliente o todos los clientes conectados. 
+
+Cuando todo sucede correctamente puedo enviar un call back. O sea, por el mismo medio de la petición puedo retornar la respuesta al cliente.
+
+
+# Broadcast: enviar mensaje a todos los clientes. 

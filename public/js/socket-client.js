@@ -27,7 +27,13 @@ socket.on('disconnect', () =>{
     lblOnline.style.display = 'none'; 
 })
 
-//Send from socket/client
+//Siempre uno de los dos va a quedar raro.
+socket.on('send-message', (payload) => {
+    console.log(payload);
+})
+
+
+//Send from socket/client. Client Talking
 btnSend.addEventListener('click', () => {
     const message = txtMessage.value; 
     // console.log(message);
@@ -36,7 +42,9 @@ btnSend.addEventListener('click', () => {
         id: '123', 
         date : new Date().getTime()
     }
-    socket.emit('send-message', payload)
+    socket.emit('send-message', payload, (res) => {
+        console.log('From Server', res);
+    })
 })
 
 

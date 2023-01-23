@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const { socketController } = require("../sockets/sockets.controller");
 
 class Server {
   // En JS las propiedades se definen en el constructor. Aqui haré el llamado del resto de propiedades
@@ -41,20 +42,8 @@ class Server {
 
   sockets() {
 
-    //From Backend
-    this.io.on('connection', (socket) => {
-
-      console.log('Socket is connected!', socket.id);
-
-      socket.on('disconnect', () => {
-        console.log('Socket is disconnect', socket.id);
-      })
-
-      socket.on('send-message', (payload) => {
-        // console.log('Send message from Server');
-        console.log(payload);
-      })
-    })
+    //From Backend. Aqui es donde el servidor habla y escucha
+    this.io.on('connection', socketController)
   }
 
   listen() {
